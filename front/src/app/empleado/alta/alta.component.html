@@ -1,0 +1,111 @@
+<div class="container mb-3">
+  <div class="container col-5 mt-3"><h1>ALTA DE EMPLEADOS</h1></div>
+  <div class="container col-5">
+    <form [formGroup]="formulario">
+      <div class="mb-3">
+        <label class="form-label">Legajo</label>
+        <input type="text" class="form-control" formControlName="legajo" />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('legajo')?.invalid &&
+            formulario.get('legajo')?.touched
+          "
+          >El legajo es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre" />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('nombre')?.invalid &&
+            formulario.get('nombre')?.touched
+          "
+          >El nombre es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        <input type="text" class="form-control" formControlName="apellido" />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('apellido')?.invalid &&
+            formulario.get('apellido')?.touched
+          "
+          >El apellido es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Fecha de Nacimiento</label>
+        <input
+          type="date"
+          class="form-control"
+          formControlName="fechaNacimiento"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('fechaNacimiento')?.invalid &&
+            formulario.get('fechaNacimiento')?.touched
+          "
+          >La fecha de nacimiento es requerida</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Fecha de Ingreso </label>
+        <input
+          type="date"
+          class="form-control"
+          formControlName="fechaIngreso"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('fechaIngreso')?.invalid &&
+            formulario.get('fechaIngreso')?.touched
+          "
+          >La fecha de ingreso es requerida</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Area</label>
+        <input type="text" class="form-control" formControlName="area" />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('area')?.invalid && formulario.get('area')?.touched
+          "
+          >El area es requerida</small
+        >
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Sueldo Bruto</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="sueldoBruto"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('sueldoBruto')?.invalid &&
+            formulario.get('sueldoBruto')?.touched
+          "
+          >El sueldo bruto es requerido</small
+        >
+      </div>
+      <button
+        type="submit"
+        class="btn btn-dark"
+        (click)="registrar()"
+        [disabled]="formulario.invalid"
+      >
+        REGISTRAR EMPLEADO
+      </button>
+    </form>
+  </div>
+</div>
