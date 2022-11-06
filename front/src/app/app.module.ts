@@ -11,6 +11,8 @@ import { ReciboService } from './services/recibo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ListadoComponent } from './recibo/listado/listado.component';
 import { AltaComponent } from './recibo/alta/alta.component';
+import { ReportesComponent } from './reportes/reportes/reportes.component';
+import { ReporteService } from './services/reporte.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +20,7 @@ import { AltaComponent } from './recibo/alta/alta.component';
     AltaEComponent,
     ListadoComponent,
     AltaComponent,
+    ReportesComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { AltaComponent } from './recibo/alta/alta.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [EmpleadoService, ReciboService],
+  providers: [EmpleadoService, ReciboService, ReporteService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

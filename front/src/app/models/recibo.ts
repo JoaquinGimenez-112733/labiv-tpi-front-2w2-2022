@@ -1,5 +1,3 @@
-import { Empleado, EmpleadoDTO } from './empleado';
-
 export interface Recibo {
   ano: number;
   mes: number;

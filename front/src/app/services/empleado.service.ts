@@ -9,6 +9,7 @@ import { Empleado } from '../models/empleado';
 export class EmpleadoService {
   dominio = 'empleados/';
   apiURL = `${environment.base_URL}${this.dominio}`;
+
   constructor(private _http: HttpClient) {}
 
   getAll(): Observable<Empleado[]> {

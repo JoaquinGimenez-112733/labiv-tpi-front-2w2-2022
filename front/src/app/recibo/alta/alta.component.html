@@ -20,7 +20,11 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Mes</label>
-        <input type="text" class="form-control" formControlName="mes" />
+        <select class="form-control" formControlName="mes">
+          <option [ngValue]="m.numero" *ngFor="let m of meses">
+            {{ m.mes }}
+          </option>
+        </select>
         <small
           class="text-danger"
           *ngIf="
