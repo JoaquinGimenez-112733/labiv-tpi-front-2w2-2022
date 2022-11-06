@@ -1,1 +1,50 @@
-<p>listado works!</p>
+<div class="container">
+  <div class="container"><h1>LISTADO DE RECIBOS POR EMPLEADO</h1></div>
+  <div class="container">
+    <div class="row">
+      <button class="btn btn-dark col-1 mb-3" (click)="nuevo()">NUEVO</button>
+    </div>
+    <div class="row">
+      <input
+        type="number"
+        class="form-control col-1 mb-3"
+        [(ngModel)]="legajo"
+      />
+      <button class="btn btn-dark col-2 mb-3" (click)="consultar()">
+        Consultar Legajo
+      </button>
+    </div>
+  </div>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Codigo Recibo</th>
+          <th scope="col">Año</th>
+          <th scope="col">Mes</th>
+          <th scope="col">Sueldo Bruto</th>
+          <th scope="col">Monto Antiguedad</th>
+          <th scope="col">Monto Jubilacion</th>
+          <th scope="col">Monto Obra Social</th>
+          <th scope="col">Monto FAC</th>
+          <th scope="col">Sueldo Neto</th>
+          <th scope="col">Legajo Empleado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of listado">
+          <td>{{ r.id }}</td>
+          <td>{{ r.ano }}</td>
+          <td>{{ r.mes }}</td>
+          <td>{{ r.sueldoBruto | currency: "ARS" }}</td>
+          <td>{{ r.montoAntiguedad | currency: "ARS" }}</td>
+          <td>{{ r.montoJubilacion | currency: "ARS" }}</td>
+          <td>{{ r.montoObraSocial | currency: "ARS" }}</td>
+          <td>{{ r.montoFAC | currency: "ARS" }}</td>
+          <td>{{ r.sueldoNeto | currency: "ARS" }}</td>
+          <td>{{ r.legajoEmpleado }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,1 +1,135 @@
-<p>alta works!</p>
+<div class="container mb-3">
+  <div class="container col-5 mt-3"><h1>ALTA DE RECIBOS DE SUELDO</h1></div>
+  <div class="container col-5">
+    <form [formGroup]="formulario">
+      <div class="mb-3">
+        <label class="form-label">Año</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="ano"
+          maxlength="4"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('ano')?.invalid && formulario.get('ano')?.touched
+          "
+          >El año es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mes</label>
+        <input type="text" class="form-control" formControlName="mes" />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('mes')?.invalid && formulario.get('mes')?.touched
+          "
+          >El mes es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Sueldo Bruto</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="sueldoBruto"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('sueldoBruto')?.invalid &&
+            formulario.get('sueldoBruto')?.touched
+          "
+          >El sueldo bruto es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Monto Antiguedad</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="montoAntiguedad"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('montoAntiguedad')?.invalid &&
+            formulario.get('montoAntiguedad')?.touched
+          "
+          >El monto de antiguedad es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Monto Jubilacion</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="montoJubilacion"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('montoJubilacion')?.invalid &&
+            formulario.get('montoJubilacion')?.touched
+          "
+          >El monto de jubilacion es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Monto Obra Social</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="montoObraSocial"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('montoObraSocial')?.invalid &&
+            formulario.get('montoObraSocial')?.touched
+          "
+          >El monto de la obra social es requerido</small
+        >
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Monto Fondo Alta Complejidad</label>
+        <input type="number" class="form-control" formControlName="montoFAC" />
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('montoFAC')?.invalid &&
+            formulario.get('montoFAC')?.touched
+          "
+          >El monto FAC es requerido</small
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Empleado</label>
+        <select class="form-control" formControlName="empleado">
+          <option *ngFor="let e of empleados" [ngValue]="e">
+            {{ e.legajo }} - {{ e.nombre }} {{ e.apellido }}
+          </option>
+        </select>
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('empleado')?.invalid &&
+            formulario.get('empleado')?.touched
+          "
+          >El empleado es requerido</small
+        >
+      </div>
+      <button
+        type="submit"
+        class="btn btn-dark"
+        (click)="registrar()"
+        [disabled]="formulario.invalid"
+      >
+        REGISTRAR RECIBO DE SUELDO
+      </button>
+    </form>
+  </div>
+</div>

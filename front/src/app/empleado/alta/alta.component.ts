@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Empleado } from 'src/app/models/empleado';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-alta',
   templateUrl: './alta.component.html',
@@ -38,10 +38,18 @@ export class AltaEComponent implements OnInit {
           .postEmpleado(this.formulario.value as Empleado)
           .subscribe({
             next: () => {
-              alert('Empleado creado exitosamente!');
+              Swal.fire(
+                'Bien hecho!',
+                'Empleado registrado con exito.',
+                'success'
+              );
             },
             error: () => {
-              alert('Error al crear el empleado');
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se pudo dar de alta el empleado!',
+              });
             },
           })
       );
