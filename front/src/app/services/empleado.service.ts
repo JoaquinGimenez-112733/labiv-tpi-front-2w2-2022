@@ -14,6 +14,9 @@ export class EmpleadoService {
   getAll(): Observable<Empleado[]> {
     return this._http.get<Empleado[]>(this.apiURL);
   }
+  getAllSimple(): Observable<any> {
+    return this._http.get(`${environment.base_URL}emp`);
+  }
 
   postEmpleado(emp: Empleado): Observable<any> {
     const headers = new HttpHeaders()

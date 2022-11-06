@@ -7,3 +7,9 @@ export interface Empleado {
   area: string;
   sueldoBruto: number;
 }
+
+export interface EmpleadoDTO {
+  legajo: number;
+  nombre: string;
+  apellido: string;
+}
