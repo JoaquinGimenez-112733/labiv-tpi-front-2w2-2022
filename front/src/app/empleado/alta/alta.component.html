@@ -4,14 +4,28 @@
     <form [formGroup]="formulario">
       <div class="mb-3">
         <label class="form-label">Legajo</label>
-        <input type="number" class="form-control" formControlName="legajo" />
+        <input
+          required
+          type="number"
+          class="form-control"
+          formControlName="legajo"
+        />
         <small
           class="text-danger"
           *ngIf="
             formulario.get('legajo')?.invalid &&
-            formulario.get('legajo')?.touched
+            formulario.get('legajo')?.touched &&
+            formulario.get('legajo')?.hasError('legajoExists') == false
           "
           >El legajo es requerido</small
+        >
+        <small
+          class="text-danger"
+          *ngIf="
+            formulario.get('legajo')?.hasError('legajoExists') &&
+            formulario.get('legajo')?.touched
+          "
+          >El legajo ya existe!!</small
         >
       </div>
       <div class="mb-3">

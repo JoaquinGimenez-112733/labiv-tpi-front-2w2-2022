@@ -24,7 +24,7 @@
           <td>{{ e.area }}</td>
           <td>{{ e.fechaNacimiento }}</td>
           <td>{{ e.antiguedad }}</td>
-          <td>{{ e.sueldoBruto }}</td>
+          <td>{{ e.sueldoBruto | currency: "ARS" }}</td>
         </tr>
       </tbody>
     </table>
