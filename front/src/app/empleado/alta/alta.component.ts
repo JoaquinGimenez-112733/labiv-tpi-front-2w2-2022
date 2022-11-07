@@ -2,9 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EmpleadoService } from 'src/app/services/empleado.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Empleado } from 'src/app/models/empleado';
+import { debounceTime, finalize, map, switchMap, tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { legajoValidator } from 'src/app/services/legajoValidator';
 @Component({
   selector: 'app-alta',
   templateUrl: './alta.component.html',
@@ -16,12 +24,20 @@ export class AltaEComponent implements OnInit {
   constructor(
     private empService: EmpleadoService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private legValidator: legajoValidator
   ) {}
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      legajo: ['', Validators.required],
+      legajo: [
+        '',
+        {
+          Validators: ['', Validators.required],
+          asyncValidators: [this.legValidator],
+          updateOn: 'blur',
+        },
+      ],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       fechaNacimiento: ['', Validators.required],

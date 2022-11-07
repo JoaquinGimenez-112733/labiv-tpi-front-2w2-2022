@@ -18,6 +18,9 @@ export class EmpleadoService {
   getAllSimple(): Observable<any> {
     return this._http.get(`${environment.base_URL}emp`);
   }
+  getEmpleadoByLegajo(legajo: number): Observable<any> {
+    return this._http.get(environment.base_URL + 'empexist?legajo=' + legajo);
+  }
 
   postEmpleado(emp: Empleado): Observable<any> {
     const headers = new HttpHeaders()
