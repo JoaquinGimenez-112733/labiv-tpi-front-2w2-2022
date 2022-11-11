@@ -21,6 +21,16 @@ import { legajoValidator } from 'src/app/services/legajoValidator';
 export class AltaEComponent implements OnInit {
   private subs = new Subscription();
   formulario: FormGroup;
+  areas = [
+    { numero: 1, area: 'Administracion' },
+    { numero: 2, area: 'Ventas' },
+    { numero: 3, area: 'Comercial' },
+    { numero: 4, area: 'Recursos Humanos' },
+    { numero: 5, area: 'Obras' },
+    { numero: 6, area: 'Taller' },
+  
+  ];
+
   constructor(
     private empService: EmpleadoService,
     private router: Router,

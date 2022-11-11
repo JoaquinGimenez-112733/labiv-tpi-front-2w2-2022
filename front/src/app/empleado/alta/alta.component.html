@@ -84,13 +84,19 @@
           >La fecha de ingreso es requerida</small
         >
       </div>
+
       <div class="mb-3">
         <label class="form-label">Area</label>
-        <input type="text" class="form-control" formControlName="area" />
+        <select class="form-control" formControlName="area">
+          <option *ngFor="let a of areas" [ngValue]="a.area">
+            {{ a.area }} 
+          </option>
+        </select>
         <small
           class="text-danger"
           *ngIf="
-            formulario.get('area')?.invalid && formulario.get('area')?.touched
+            formulario.get('area')?.invalid &&
+            formulario.get('area')?.touched
           "
           >El area es requerida</small
         >
