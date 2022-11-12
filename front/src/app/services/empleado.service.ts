@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Empleado } from '../models/empleado';
 @Injectable({
@@ -9,7 +9,7 @@ import { Empleado } from '../models/empleado';
 export class EmpleadoService {
   dominio = 'empleados/';
   apiURL = `${environment.base_URL}${this.dominio}`;
-
+  sb: any;
   constructor(private _http: HttpClient) {}
 
   getAll(): Observable<Empleado[]> {
@@ -20,6 +20,18 @@ export class EmpleadoService {
   }
   getEmpleadoByLegajo(legajo: number): Observable<any> {
     return this._http.get(environment.base_URL + 'empexist?legajo=' + legajo);
+  }
+
+  getAllFiltered(legajo: number): Observable<any> {
+    // this._http.get<Empleado[]>(this.apiURL).subscribe({
+    //   next: (emps: Empleado[]) => {
+    //     this.sb = emps.find((a) => a.legajo == legajo)?.sueldoBruto;
+    //   },
+    // });
+
+    return this._http
+      .get<Empleado[]>(this.apiURL)
+      .pipe(map((a) => a.find((b) => b.legajo == legajo)?.sueldoBruto));
   }
 
   postEmpleado(emp: Empleado): Observable<any> {

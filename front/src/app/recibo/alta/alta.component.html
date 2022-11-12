@@ -2,11 +2,10 @@
   <div class="container col-5 mt-3"><h1>ALTA DE RECIBOS DE SUELDO</h1></div>
   <div class="container col-5">
     <form [formGroup]="formulario">
-
       <div class="mb-3">
         <label class="form-label">Empleado</label>
         <select class="form-control" formControlName="empleado">
-          <option *ngFor="let e of empleados" [ngValue]="e">
+          <option selected *ngFor="let e of empleados" [ngValue]="e">
             {{ e.legajo }} - {{ e.nombre }} {{ e.apellido }}
           </option>
         </select>

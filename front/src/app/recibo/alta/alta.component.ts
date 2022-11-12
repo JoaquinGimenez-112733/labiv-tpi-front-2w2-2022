@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Subscription } from 'rxjs';
 import { Empleado } from 'src/app/models/empleado';
 import { Recibo } from 'src/app/models/recibo';
@@ -15,6 +16,8 @@ import Swal from 'sweetalert2';
 export class AltaComponent implements OnInit {
   formulario: FormGroup;
   empleados: any[];
+  empleado: Empleado;
+  sueldoBruto: number;
   meses = [
     { numero: 1, mes: 'Enero' },
     { numero: 2, mes: 'Febrero' },
@@ -56,7 +59,18 @@ export class AltaComponent implements OnInit {
         },
       })
     );
+
+    this.formulario.controls['empleado'].valueChanges.subscribe({
+      next: (emp: Empleado) => {
+        this.empService.getAllFiltered(emp.legajo).subscribe({
+          next: (sb: number) => {
+            this.formulario.patchValue({ sueldoBruto: sb });
+          },
+        });
+      },
+    });
   }
+
   registrar() {
     this.subs.add(
       this.recService.postRecibo(this.formulario.value as Recibo).subscribe({
